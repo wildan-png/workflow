@@ -2,16 +2,20 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { 
+  Menu, 
   X, 
   ChevronLeft, 
   ChevronRight,
@@ -20,6 +24,7 @@ import {
   FileText,
   Folder,
   Settings,
+  User,
   UserPlus,
   Search,
   Plus,
@@ -28,8 +33,12 @@ import {
   Eye,
   BarChart3,
   Zap,
+  Globe,
   Database,
   Workflow,
+  Layers,
+  Home,
+  Palette,
   HelpCircle,
   Bell,
   Download,
@@ -240,7 +249,7 @@ Content-Length: 847
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Dashboard</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
+        body
         .user-card { border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 8px; }
         .user-name { font-weight: bold; color: #333; }
         .user-email { color: #666; }
