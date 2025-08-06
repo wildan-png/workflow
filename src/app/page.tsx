@@ -85,6 +85,27 @@ export default function Home() {
                 </CardContent>
               </Card>
             </a>
+
+            <a href="/invoice-list" className="block">
+              <Card className="navigation-card hover:shadow-lg transition-all duration-200 cursor-pointer group">
+                <CardHeader className="navigation-card__header">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-purple-500/10 mb-4 group-hover:bg-purple-500/20 transition-colors">
+                    <Layers className="h-6 w-6 text-purple-500" />
+                  </div>
+                  <CardTitle className="navigation-card__title">Invoice list app</CardTitle>
+                  <CardDescription className="navigation-card__description">
+                    invoice page from Arto rwith flow create invoice 
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="navigation-card__content">
+                  <div className="flex items-center justify-between">
+                    <Badge variant="secondary" className="navigation-card__badge">Guides</Badge>
+                    <ChevronRight className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+                  </div>
+                </CardContent>
+              </Card>
+            </a>
+            
           </div>
         </div>
       </main>
