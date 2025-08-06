@@ -3,10 +3,11 @@ import { getInvoiceById, deleteInvoice } from '@/lib/supabase-db';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   try {
-    const invoice = await getInvoiceById(params.id);
+    const invoice = await getInvoiceById(id);
     
     if (!invoice) {
       return NextResponse.json(
@@ -30,10 +31,11 @@ export async function GET(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   try {
-    await deleteInvoice(params.id);
+    await deleteInvoice(id);
     
     return NextResponse.json({ 
       success: true, 
