@@ -1,4 +1,4 @@
-import { supabase, Invoice, InvoiceProduct, Customer, Product } from './supabase'
+import { supabase } from './supabase'
 
 // Invoice operations
 export async function saveInvoice(invoiceData: {
@@ -31,7 +31,7 @@ export async function saveInvoice(invoiceData: {
     const invoiceNumber = `INV-2024-${String(Date.now()).slice(-6)}`
 
     // Insert invoice
-    const { data: invoice, error: invoiceError } = await supabase
+    const { error: invoiceError } = await supabase
       .from('invoices')
       .insert({
         id: invoiceId,

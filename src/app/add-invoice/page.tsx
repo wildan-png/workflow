@@ -7,9 +7,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { 
   HelpCircle, 
   X, 
@@ -24,8 +23,6 @@ import {
   ChevronUp
 } from "lucide-react";
 
-const currencies = ["USD", "EUR", "GBP", "JPY", "CAD", "AUD"];
-
 export default function AddInvoicePage() {
   const [mounted, setMounted] = useState(false);
   
@@ -33,8 +30,7 @@ export default function AddInvoicePage() {
   const [selectedCustomer, setSelectedCustomer] = useState("");
   const [subject, setSubject] = useState("");
   const [dueDate, setDueDate] = useState("");
-  const [amount, setAmount] = useState("");
-  const [currency, setCurrency] = useState("USD");
+  const [currency] = useState("USD");
   
   // Product state
   const [selectedProducts, setSelectedProducts] = useState<any[]>([]);
@@ -171,13 +167,7 @@ export default function AddInvoicePage() {
     }
   };
 
-  const handleSave = async () => {
-    setIsSaving(true);
-    // Simulate save
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    setLastSaved(`Last saved: ${new Date().toLocaleTimeString()}`);
-    setIsSaving(false);
-  };
+
 
   const handleSendInvoice = async () => {
     // Validate form
@@ -333,7 +323,7 @@ export default function AddInvoicePage() {
                   <div className="product-selection__products-list">
                     {selectedProducts.length === 0 ? (
                       <div className="product-selection__empty-state text-left pb-16 text-gray-500">
-                        No products selected. Click 'Add Product' to get started.
+                        No products selected. Click &apos;Add Product&apos; to get started.
                       </div>
                     ) : (
                       <div className="product-selection__products space-y-3">

@@ -162,7 +162,7 @@ export async function saveInvoice(invoiceData: {
   selectedCustomer: string;
   dueDate: string;
   currency: string;
-  selectedProducts: any[];
+  selectedProducts: unknown[];
   notesContent: string;
   termsContent: string;
   footerContent: string;

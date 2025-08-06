@@ -10,12 +10,10 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { 
-  Search, 
   Plus, 
   Download, 
   Upload, 
   MoreHorizontal,
-  Eye,
   Edit,
   Trash2,
   ChevronRight,
@@ -248,10 +246,10 @@ export default function InvoiceListPage() {
         console.error('Failed to delete invoice:', result.message);
         alert('Failed to delete invoice. Please try again.');
       }
-    } catch (error) {
-      console.error('Error deleting invoice:', error);
-      alert('Error deleting invoice. Please try again.');
-    }
+          } catch {
+        console.error('Error deleting invoice');
+        alert('Error deleting invoice. Please try again.');
+      }
   };
 
   // Fetch invoices from database
@@ -279,8 +277,8 @@ export default function InvoiceListPage() {
         } else {
           console.error('Failed to fetch invoices:', result.message);
         }
-      } catch (error) {
-        console.error('Error fetching invoices:', error);
+      } catch {
+        console.error('Error fetching invoices');
       } finally {
         setIsLoading(false);
       }

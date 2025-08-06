@@ -12,11 +12,9 @@ import {
   ChevronRight, 
   Home, 
   FileText, 
-  Eye, 
   Edit, 
   Download, 
   Send, 
-  MoreHorizontal,
   Plus,
   Trash2,
   Upload,
@@ -158,8 +156,8 @@ export default function InvoiceDetailPage({ params }: { params: Promise<{ invoic
         } else {
           console.error('Failed to fetch invoice:', result.message);
         }
-      } catch (error) {
-        console.error('Error fetching invoice:', error);
+      } catch {
+        console.error('Error fetching invoice');
       } finally {
         setIsLoading(false);
       }
@@ -192,7 +190,7 @@ export default function InvoiceDetailPage({ params }: { params: Promise<{ invoic
       <div className="invoice-detail-page min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <div className="text-lg font-semibold mb-2">Invoice not found</div>
-          <div className="text-gray-500">The invoice you're looking for doesn't exist.</div>
+          <div className="text-gray-500">The invoice you&apos;re looking for doesn&apos;t exist.</div>
           <Button 
             onClick={() => window.location.href = '/invoice-list'} 
             className="mt-4"
