@@ -248,6 +248,9 @@ export default function InvoiceListPage() {
           newSet.delete(invoiceId);
           return newSet;
         });
+        
+        // Show success message
+        console.log('Invoice deleted successfully');
       } else {
         console.error('Failed to delete invoice:', result.message);
         alert('Failed to delete invoice. Please try again.');
@@ -658,7 +661,20 @@ export default function InvoiceListPage() {
                       <TableRow 
                         key={invoice.id} 
                         className="table-section__row cursor-pointer hover:bg-gray-50"
-                        onClick={() => window.location.href = `/invoice-list/${invoice.id}`}
+                        onClick={(e) => {
+                          // Don't navigate if clicking on dropdown elements or buttons
+                          const target = e.target as HTMLElement;
+                          if (target.closest('[role="menuitem"]') || 
+                              target.closest('[data-radix-popper-content-wrapper]') ||
+                              target.closest('button') ||
+                              target.closest('[role="button"]') ||
+                              target.tagName === 'BUTTON') {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            return;
+                          }
+                          window.location.href = `/invoice-list/${invoice.id}`;
+                        }}
                       >
                         <TableCell className="table-section__cell-amount font-medium">
                           {formatCurrency(invoice.amount, invoice.currency)}
@@ -697,7 +713,13 @@ export default function InvoiceListPage() {
                                 <MoreHorizontal className="h-4 w-4" />
                               </Button>
                             </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end">
+                            <DropdownMenuContent 
+                              align="end"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                              }}
+                            >
                               <DropdownMenuItem>
                                 <Edit className="h-4 w-4 mr-2" />
                                 Edit Invoice
