@@ -24,12 +24,14 @@ export async function POST(request: NextRequest) {
 
 export async function GET() {
   try {
+    console.log('Fetching invoices...');
     const invoices = await getInvoices();
+    console.log('Invoices fetched successfully:', invoices.length);
     return NextResponse.json({ success: true, invoices });
   } catch (error) {
     console.error('Error fetching invoices:', error);
     return NextResponse.json(
-      { success: false, message: 'Failed to fetch invoices' },
+      { success: false, message: 'Failed to fetch invoices', error: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     );
   }
