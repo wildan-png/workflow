@@ -1,143 +1,163 @@
-# PRD Workflow - Next.js Project
+# PRD Workflow - Invoice Management System
 
-A modern Next.js application built with TypeScript, Tailwind CSS, and shadcn/ui components. This project provides a solid foundation for building beautiful web applications with a comprehensive component library.
+A modern Next.js application built with TypeScript, Tailwind CSS, and shadcn/ui components for comprehensive invoice management.
 
 ## 🚀 Features
 
-- **Next.js 15** - Latest version with App Router
-- **TypeScript** - Full type safety
-- **Tailwind CSS** - Utility-first CSS framework
-- **shadcn/ui** - Beautiful, accessible component library
-- **Dark Mode Support** - Built-in theme switching
-- **ESLint** - Code quality and consistency
-- **Responsive Design** - Mobile-first approach
+### Core Functionality
+- **Invoice Management**: Create, view, edit, and delete invoices
+- **Customer Management**: Manage customer information and relationships
+- **Product Catalog**: Maintain product inventory with pricing
+- **Real-time Preview**: Live preview of invoices as you create them
+- **Cloud Database**: Supabase integration for data persistence
+- **Responsive Design**: Works seamlessly on desktop and mobile
 
-## 📦 Available Components
+### Invoice Features
+- **Dynamic Product Selection**: Add products with thumbnails and pricing
+- **Discount & Coupon System**: Apply percentage or fixed amount discounts
+- **Tax Calculation**: Automatic tax calculations
+- **Additional Options**: Terms & conditions, notes, and footer customization
+- **Multiple Currencies**: Support for USD, EUR, GBP, JPY, CAD, AUD
+- **Status Tracking**: Track invoice status (draft, sent, paid, etc.)
 
-This project includes all major shadcn/ui components:
+### User Experience
+- **Modern UI**: Clean, intuitive interface using shadcn/ui components
+- **Dark/Light Mode**: Dual theme support
+- **Loading States**: Smooth loading experiences
+- **Error Handling**: Comprehensive error handling and user feedback
+- **Responsive Layout**: Optimized for all screen sizes
 
-### UI Components
-- Button, Badge, Avatar
-- Card, Separator, Skeleton
-- Progress, Slider
-- Tabs, Accordion, Collapsible
+## 🛠️ Tech Stack
 
-### Form Components
-- Input, Textarea, Label
-- Checkbox, Radio Group, Switch, Toggle
-- Select, Form
-- Dialog, Alert Dialog
+- **Frontend**: Next.js 14, React 18, TypeScript
+- **Styling**: Tailwind CSS, shadcn/ui components
+- **Database**: Supabase (PostgreSQL)
+- **Authentication**: Supabase Auth (ready for implementation)
+- **Deployment**: Vercel-ready
 
-### Navigation & Layout
-- Navigation Menu, Menubar
-- Dropdown Menu, Context Menu
-- Command, Pagination
-- Sheet, Drawer
+## 📦 Installation
 
-### Data Display
-- Table, Calendar
-- Carousel, Aspect Ratio
-- Alert, Tooltip, Hover Card
-- Popover
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/wildan-png/workflow.git
+   cd workflow
+   ```
 
-### Advanced
-- Resizable, Scroll Area
-- Sonner (Toast notifications)
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-## 🛠️ Getting Started
+3. **Set up environment variables**
+   Create a `.env.local` file in the root directory:
+   ```env
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
 
-### Prerequisites
-- Node.js 18+ 
-- npm or yarn
+4. **Set up Supabase database**
+   - Create a Supabase project at [supabase.com](https://supabase.com)
+   - Copy your project URL and anon key to `.env.local`
+   - Run the SQL schema from `supabase-schema.sql` in your Supabase SQL Editor
 
-### Installation
+5. **Start the development server**
+   ```bash
+   npm run dev
+   ```
 
-1. Clone the repository:
-```bash
-git clone <your-repo-url>
-cd prd-workflow
-```
+6. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
-2. Install dependencies:
-```bash
-npm install
-```
+## 🗄️ Database Schema
 
-3. Start the development server:
-```bash
-npm run dev
-```
+The application uses the following database tables:
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+- **customers**: Customer information (name, email, etc.)
+- **products**: Product catalog (name, price, image, etc.)
+- **invoices**: Invoice headers (subject, customer, totals, etc.)
+- **invoice_products**: Invoice line items (products, quantities, prices)
 
-## 📝 Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
-
-## 🎨 Adding New Components
-
-To add new shadcn/ui components:
-
-```bash
-npx shadcn@latest add <component-name>
-```
-
-Example:
-```bash
-npx shadcn@latest add button
-npx shadcn@latest add card
-```
-
-## 🎯 Project Structure
+## 📁 Project Structure
 
 ```
 src/
-├── app/                 # Next.js App Router pages
-│   ├── globals.css     # Global styles and CSS variables
-│   ├── layout.tsx      # Root layout
-│   └── page.tsx        # Home page
-├── components/         # React components
-│   └── ui/            # shadcn/ui components
-│       └── index.ts   # Component exports
-└── lib/               # Utility functions
-    └── utils.ts       # shadcn/ui utilities
+├── app/
+│   ├── add-invoice/          # Invoice creation page
+│   ├── invoice-list/         # Invoice listing and details
+│   ├── api/                  # API routes
+│   └── components/           # Component documentation
+├── components/
+│   ├── ui/                   # shadcn/ui components
+│   └── navigation.tsx        # Navigation component
+├── lib/
+│   ├── supabase.ts          # Supabase client configuration
+│   ├── supabase-db.ts       # Database operations
+│   └── utils.ts             # Utility functions
+└── docs/                    # Documentation and layout plans
 ```
 
-## 🎨 Customization
+## 🔧 API Endpoints
 
-### Theme Customization
-Edit `src/app/globals.css` to customize:
-- Color scheme
-- Typography
-- Spacing
-- Border radius
-- Shadows
+- `GET /api/invoices` - Fetch all invoices
+- `POST /api/invoices` - Create new invoice
+- `GET /api/invoices/[id]` - Fetch specific invoice
+- `DELETE /api/invoices/[id]` - Delete invoice
+- `GET /api/customers` - Fetch all customers
+- `GET /api/products` - Fetch all products
 
-### Component Styling
-All components use CSS variables for consistent theming. You can override these in `globals.css` or use Tailwind's arbitrary value syntax.
+## 🎨 Design System
 
-## 📚 Resources
+The application uses a comprehensive design system built on shadcn/ui components:
 
-- [Next.js Documentation](https://nextjs.org/docs)
-- [shadcn/ui Documentation](https://ui.shadcn.com)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [TypeScript Documentation](https://www.typescriptlang.org/docs)
+- **Semantic Class Naming**: BEM-style classes for easy targeting
+- **Component Hierarchy**: Structured component organization
+- **Theme Support**: Dark and light mode compatibility
+- **Accessibility**: WCAG compliant components
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+1. Connect your GitHub repository to Vercel
+2. Add environment variables in Vercel dashboard
+3. Deploy automatically on push to main branch
+
+### Other Platforms
+The application can be deployed to any platform that supports Next.js:
+- Netlify
+- Railway
+- DigitalOcean App Platform
+- AWS Amplify
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-## 📄 License
+## 📝 License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+If you encounter any issues or have questions:
+
+1. Check the [Issues](https://github.com/wildan-png/workflow/issues) page
+2. Create a new issue with detailed information
+3. Include steps to reproduce the problem
+
+## 🔄 Recent Updates
+
+### Latest Release (v1.0.0)
+- ✅ Complete Supabase integration
+- ✅ Full invoice CRUD operations
+- ✅ Real-time data synchronization
+- ✅ Fixed data mapping issues
+- ✅ Improved error handling
+- ✅ Enhanced user experience
 
 ---
 
-Built with ❤️ using Next.js and shadcn/ui
+**Built with ❤️ using Next.js, TypeScript, and Supabase**
