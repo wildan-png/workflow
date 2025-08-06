@@ -225,7 +225,13 @@ export default function InvoiceListPage() {
   };
 
   // Handle invoice deletion from database
-  const handleDeleteInvoice = async (invoiceId: string) => {
+  const handleDeleteInvoice = async (invoiceId: string, event?: React.MouseEvent) => {
+    // Prevent any navigation if event is provided
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    
     try {
       const response = await fetch(`/api/invoices/${invoiceId}`, {
         method: 'DELETE',
@@ -246,10 +252,10 @@ export default function InvoiceListPage() {
         console.error('Failed to delete invoice:', result.message);
         alert('Failed to delete invoice. Please try again.');
       }
-          } catch {
-        console.error('Error deleting invoice');
-        alert('Error deleting invoice. Please try again.');
-      }
+    } catch {
+      console.error('Error deleting invoice');
+      alert('Error deleting invoice. Please try again.');
+    }
   };
 
   // Fetch invoices from database
@@ -683,7 +689,10 @@ export default function InvoiceListPage() {
                               <Button 
                                 variant="ghost" 
                                 size="sm"
-                                onClick={(e) => e.stopPropagation()}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                }}
                               >
                                 <MoreHorizontal className="h-4 w-4" />
                               </Button>
@@ -695,7 +704,7 @@ export default function InvoiceListPage() {
                               </DropdownMenuItem>
                               <DropdownMenuItem 
                                 className="text-red-600"
-                                onClick={() => handleDeleteInvoice(invoice.id)}
+                                onClick={(e) => handleDeleteInvoice(invoice.id, e)}
                               >
                                 <Trash2 className="h-4 w-4 mr-2" />
                                 Delete Invoice
